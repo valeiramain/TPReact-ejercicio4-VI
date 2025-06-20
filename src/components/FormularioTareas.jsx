@@ -3,10 +3,10 @@
 import { Form, Button } from "react-bootstrap";
 import ListaTareas from "./ListaTareas";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const FormularioTareas = () => {
-    // uso un State cuando el dato cambia y quiero que se renderice en el momento
-
+    
     // VALIDACIONES con react-hook-form. traigo libreria de validaciones useForm()
     const {
         register,
@@ -14,9 +14,16 @@ const FormularioTareas = () => {
         formState: { errors },
         reset
     } = useForm();
+    
+    // uso un State cuando el dato cambia y quiero que se renderice en el momento
+    // el State es 'tareas' es el array, ´setTareas' en la funcion para modifica el valor del state
+    const [tareas,setTareas] = useState([])
 
-    const agregarTarea = () => {
-        console.log('Aqui tengo que crear una tarea')
+    // dato: se guarda lo que el usuario cargo el input
+    const agregarTarea = (dato) => {
+        console.log(dato.tarea)
+        //... hace una copia de 'tareas' y agrega al final el dato ingresado
+        setTareas([...tareas,dato.tarea])
         // invoca a reset de la libreria de validaciones
         reset()
     }
@@ -47,14 +54,17 @@ const FormularioTareas = () => {
                         })}
                     />
                     <Button variant="info" type="submit">
-                        ➕
+                        <i className="bi bi-plus text-dark"></i>
                     </Button>
                 </Form.Group>
 
                 {/* muestra mensaje de error, cuando existe (?). Es una propiedad que puede o no existir, por eso va el ? */}
                 <Form.Text className="text-danger">{errors.tarea?.message}</Form.Text>
             </Form>
-            <ListaTareas></ListaTareas>
+
+            {/* con props manda los datos para armar lista de tareas */}
+            {/* props = {state} */}
+            <ListaTareas tareasProps={tareas}></ListaTareas>
         </>
     );
 };
