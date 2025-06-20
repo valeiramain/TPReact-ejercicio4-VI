@@ -1,9 +1,17 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import FormulariosTareas from './components/FormularioTareas'
 
 function App() {
-  
   return (
     <>
-      <h1>lista de tareas</h1>
+      <main className='container my-5'>
+        <h1 className='text-center'>Lista de Tareas</h1>
+        <FormulariosTareas></FormulariosTareas>
+      </main>
+      <footer className='bg-dark text-light text-center py-3' >
+        <p>Todos los derechos reservados</p>
+      </footer>
     </>
   )
 }
