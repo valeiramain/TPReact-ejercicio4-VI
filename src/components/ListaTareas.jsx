@@ -4,7 +4,7 @@ import ItemTarea from './ItemTarea';
 const ListaTareas = () => {
     return (
         // <ul>
-        <ListGroup>
+        <ListGroup className='mt-4'>
             {/* li */}
             <ItemTarea></ItemTarea>
         </ListGroup>
