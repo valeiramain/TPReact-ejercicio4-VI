@@ -1,9 +1,12 @@
 import { ListGroup, Button } from 'react-bootstrap';
 
-const ItemTarea = ({ tareaProps }) => {
+const ItemTarea = ({ nombreTarea, borrarTarea }) => {
     return (
-        <ListGroup.Item className='d-flex justify-content-between'>{tareaProps}<Button variant='danger'><i className="bi bi-x text-dark"></i></Button></ListGroup.Item>
+        // en onClick,cuando la funcion lleva parametros, debe estar dentro de una funcion anonima
+        // sino lleva parametros, se escribe onClick={funcion}
+        <ListGroup.Item className="d-flex justify-content-between">
+            {nombreTarea} <Button variant="danger" onClick={() => borrarTarea(nombreTarea)}>✖</Button>
+        </ListGroup.Item>
     );
 };
-
 export default ItemTarea;

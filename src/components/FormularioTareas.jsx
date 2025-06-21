@@ -22,10 +22,18 @@ const FormularioTareas = () => {
     // dato: se guarda lo que el usuario cargo el input
     const agregarTarea = (dato) => {
         console.log(dato.tarea)
-        //... hace una copia de 'tareas' y agrega al final el dato ingresado
+        //... hace una copia de 'tareas' y agrega al final la nueva tarea ingresada
         setTareas([...tareas,dato.tarea])
         // invoca a reset de la libreria de validaciones
         reset()
+    }
+
+    // funcion para borrar tarea, que enviará al hijo como props
+    const borrarTarea = (nombreTarea) => {
+        // fitrar el state tareas sin la tarea a eliminar
+        const TareasFiltradas = tareas.filter((itemTarea) => itemTarea !== nombreTarea)
+        // actualizar el state
+        setTareas(TareasFiltradas)
     }
 
     return (
@@ -63,8 +71,8 @@ const FormularioTareas = () => {
             </Form>
 
             {/* con props manda los datos para armar lista de tareas */}
-            {/* props = {state} */}
-            <ListaTareas tareasProps={tareas}></ListaTareas>
+            {/* props = {state}, funciones, etc */}
+            <ListaTareas tareas={tareas} borrarTarea={borrarTarea}></ListaTareas>
         </>
     );
 };
