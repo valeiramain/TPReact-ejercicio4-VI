@@ -21,7 +21,15 @@ const FormularioTareas = () => {
 
     // dato: se guarda lo que el usuario cargo el input
     const agregarTarea = (dato) => {
-        console.log(dato.tarea)
+         const nuevaTarea = dato.tarea.trim();
+
+        // Verificar si ya existe
+        const existe = tareas.includes(nuevaTarea);
+
+        if (existe) {
+            alert("⚠️ Ya existe una tarea con ese nombre");
+            return;
+        }
         //... hace una copia de 'tareas' y agrega al final la nueva tarea ingresada
         setTareas([...tareas,dato.tarea])
         // invoca a reset de la libreria de validaciones
